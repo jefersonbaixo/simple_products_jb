@@ -4,7 +4,7 @@ defmodule SimpleProductsJb.Users.Get do
 
   def call(email) do
     case Repo.get_by(User, email: email) do
-      [] -> {:error, :no_user_found}
+      nil -> {:error, :no_user_found}
       user -> {:ok, user}
     end
   end
