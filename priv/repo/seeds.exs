@@ -10,11 +10,18 @@
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
 
+alias SimpleProductsJb.Users
 alias SimpleProductsJb.Categories.Category
 alias SimpleProductsJb.Repo
 alias SimpleProductsJb.Products.Product
 
-Repo.insert(
+Users.Create.call(%{
+  name: "Jeferson Baixo",
+  email: "jeferson.baixo@yuzer.com.br",
+  password: "Yuzer123"
+})
+
+Repo.insert!(
   %Category{
     id: 1,
     name: "Cervejas",

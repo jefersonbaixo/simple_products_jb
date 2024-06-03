@@ -3,6 +3,8 @@ defmodule SimpleProductsJbWeb.ProductsController do
 
   alias SimpleProductsJb.Products
 
+  action_fallback SimpleProductsJbWeb.FallbackController
+
   def index(conn, _) do
     with {:ok, products} <- Products.all() do
       conn

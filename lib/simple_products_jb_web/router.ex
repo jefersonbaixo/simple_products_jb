@@ -5,10 +5,20 @@ defmodule SimpleProductsJbWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :auth do
+    plug SimpleProductsJbWeb.Plugs.Auth
+  end
+
   scope "/api", SimpleProductsJbWeb do
     pipe_through :api
 
     get "/", WelcomeController, :index
+    post "/users/login", UsersController, :login
+  end
+
+  scope "/api", SimpleProductsJbWeb do
+    pipe_through [:api, :auth]
+
     get "/products", ProductsController, :index
   end
 
